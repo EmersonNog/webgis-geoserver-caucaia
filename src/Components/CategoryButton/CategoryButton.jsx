@@ -75,7 +75,7 @@ const CategoryButton = ({ onStyleChange }) => {
   return (
     <div className="category-button">
       <button className="button-icon" onClick={handleToggle}>
-        <FontAwesomeIcon icon={faMap} />
+        <FontAwesomeIcon icon={faMap} className="icon" />
       </button>
       {showColumns && (
         <ul className="columns-list">

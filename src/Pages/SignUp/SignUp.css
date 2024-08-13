@@ -1,10 +1,10 @@
-.login-container {
+.register-container {
   display: flex;
   height: 100vh;
   font-family: 'Mukta', sans-serif;
 }
 
-.login-image {
+.register-image {
   flex: 1;
   display: flex;
   align-items: center;
@@ -12,18 +12,20 @@
   background-color: #e0e0e0;
 }
 
-.login-image img {
+.register-image img {
   max-width: 80%;
   height: auto;
 }
 
-.login-form {
+.register-form {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px;
   background-color: #f9f9f9;
+  overflow-x: hidden;
+  transition: transform 0.3s ease;
 }
 
 h2 {
@@ -50,11 +52,24 @@ h2 {
   border: 1px solid #ccc;
 }
 
-.login-options {
+.register-options {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.next-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #006940;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.next-button:hover {
+  background-color: #004f2e;
 }
 
 button {
@@ -83,4 +98,41 @@ p a {
 
 p a:hover {
   text-decoration: underline;
+}
+
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.step-indicator {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+.step-indicator.active {
+  background-color: #006940;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 2.5rem; /* Ajuste conforme necessário */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

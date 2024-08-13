@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, LayersControl, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import AreaSelector from '../LocationSelector/LocationSelector';
 import CategoryButton from '../CategoryButton/CategoryButton';
 import LayerGroupComponent from '../LayerGroupComponent/LayerGroupComponent';
 import Legend from '../Legend/Legend';
+import MiniMapControl from '../MiniMapControl/MiniMapControl';
+import 'leaflet/dist/leaflet.css';
 
 const ChangeMapCenter = ({ center }) => {
   const map = useMap();
@@ -86,60 +87,66 @@ const Map = () => {
 
   return (
     <>
-      <MapContainer
-        center={mapCenters[selectedArea]}
-        zoom={15}
-        style={{ height: '91vh', width: '100%' }}
-      >
-        <CategoryButton onStyleChange={handleStyleChange} />
-        <LayersControl position="topright">
-          <BaseLayer checked name="OpenStreetMap">
-            <TileLayer
-              url={mapUrls['OSM']}
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-          </BaseLayer>
-          <BaseLayer name="Carto Positron">
-            <TileLayer
-              url={mapUrls['Carto Positron']}
-              attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
-            />
-          </BaseLayer>
-          <BaseLayer name="ESRI World">
-            <TileLayer
-              url={mapUrls['ESRI World']}
-              attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> contributors'
-            />
-          </BaseLayer>
-          <Overlay checked name="Lotes">
-            <LayerGroupComponent
-              layerName="cite:lotes"
-              geoJsonData={lotesData}
-              wmsUrl={mapUrls['GeoServer WMS']}
-              styles={currentStyle}
-            />
-          </Overlay>
-          <Overlay name="Quadras">
-            <LayerGroupComponent
-              layerName="cite:quadras"
-              geoJsonData={geoJsonData}
-              wmsUrl={mapUrls['GeoServer WMS']}
-              styles={'cite:quadras_estilos'}
-            />
-          </Overlay>
-          <Overlay name="Sub-Áreas">
-            <LayerGroupComponent
-              layerName="cite:subareas"
-              geoJsonData={subareasData}
-              wmsUrl={mapUrls['GeoServer WMS']}
-              styles={'cite:subareas_estilos'}
-            />
-          </Overlay>
-        </LayersControl>
-        <ChangeMapCenter center={mapCenters[selectedArea]} />
-        <AreaSelector selectedArea={selectedArea} onChange={handleChangeArea} />
-        <Legend legendUrl={legendUrl} />
-      </MapContainer>
+      <main className="main">
+        <MapContainer
+          center={mapCenters[selectedArea]}
+          zoom={16}
+          style={{ height: '91vh', width: '100%' }}
+        >
+          <CategoryButton onStyleChange={handleStyleChange} />
+          <LayersControl position="topright">
+            <BaseLayer checked name="OpenStreetMap">
+              <TileLayer
+                url={mapUrls['OSM']}
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+            </BaseLayer>
+            <BaseLayer name="Carto Positron">
+              <TileLayer
+                url={mapUrls['Carto Positron']}
+                attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
+              />
+            </BaseLayer>
+            <BaseLayer name="ESRI World">
+              <TileLayer
+                url={mapUrls['ESRI World']}
+                attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> contributors'
+              />
+            </BaseLayer>
+            <Overlay checked name="Lotes">
+              <LayerGroupComponent
+                layerName="cite:lotes"
+                geoJsonData={lotesData}
+                wmsUrl={mapUrls['GeoServer WMS']}
+                styles={currentStyle}
+              />
+            </Overlay>
+            <Overlay name="Quadras">
+              <LayerGroupComponent
+                layerName="cite:quadras"
+                geoJsonData={geoJsonData}
+                wmsUrl={mapUrls['GeoServer WMS']}
+                styles={'cite:quadras_estilos'}
+              />
+            </Overlay>
+            <Overlay name="Sub-Áreas">
+              <LayerGroupComponent
+                layerName="cite:subareas"
+                geoJsonData={subareasData}
+                wmsUrl={mapUrls['GeoServer WMS']}
+                styles={'cite:subareas_estilos'}
+              />
+            </Overlay>
+          </LayersControl>
+          <ChangeMapCenter center={mapCenters[selectedArea]} />
+          <AreaSelector
+            selectedArea={selectedArea}
+            onChange={handleChangeArea}
+          />
+          <Legend legendUrl={legendUrl} />
+          <MiniMapControl />
+        </MapContainer>
+      </main>
     </>
   );
 };

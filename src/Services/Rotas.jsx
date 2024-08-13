@@ -1,31 +1,56 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import SignUp from '../Pages/SignUp/SignUp';
+import About from '../Pages/About/About';
+import PrivateRoute from '../Services/PrivateRoute';
 
 function Rotas() {
   return (
     <Router>
       <Routes>
         <Route
-          exact
-          path="/"
+          path="/login"
           element={
-            <>
-              {' '}
-              <Home />{' '}
-            </>
+            localStorage.getItem('token') ? (
+              <Navigate to="/map" replace />
+            ) : (
+              <Login />
+            )
           }
         />
         <Route
-          exact
-          path="/login"
+          path="/signup"
           element={
-            <>
-              {' '}
-              <Login />{' '}
-            </>
+            localStorage.getItem('token') ? (
+              <Navigate to="/map" replace />
+            ) : (
+              <SignUp />
+            )
           }
         />
+        <Route
+          path="/map"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PrivateRoute>
+              <About />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );
