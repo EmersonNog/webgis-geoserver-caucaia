@@ -9,6 +9,7 @@ import Login from '../Pages/Login/Login';
 import SignUp from '../Pages/SignUp/SignUp';
 import About from '../Pages/About/About';
 import PrivateRoute from '../Services/PrivateRoute';
+import Cadaster from '../Pages/Cadaster/Cadaster';
 
 function Rotas() {
   return (
@@ -32,6 +33,14 @@ function Rotas() {
             ) : (
               <SignUp />
             )
+          }
+        />
+        <Route
+          path="/cadaster"
+          element={
+            <PrivateRoute>
+              <Cadaster />
+            </PrivateRoute>
           }
         />
         <Route

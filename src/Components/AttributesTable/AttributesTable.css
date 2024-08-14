@@ -1,0 +1,93 @@
+.table-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1000px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  background-color: rgb(54, 54, 54);
+  color: white;
+  cursor: pointer;
+}
+
+.selected {
+  color: blue;
+}
+
+th:hover {
+  background-color: #0056b3;
+}
+
+td {
+  background-color: #ffffff;
+}
+
+tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+
+tr:hover td {
+  background-color: #e6e6e6;
+}
+
+input[type='checkbox'] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+pre {
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 4px;
+  max-width: 1000px;
+  margin: 20px auto;
+  overflow-x: auto;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+}

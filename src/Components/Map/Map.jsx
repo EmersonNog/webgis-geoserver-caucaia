@@ -6,6 +6,7 @@ import LayerGroupComponent from '../LayerGroupComponent/LayerGroupComponent';
 import Legend from '../Legend/Legend';
 import MiniMapControl from '../MiniMapControl/MiniMapControl';
 import 'leaflet/dist/leaflet.css';
+import { BASE_URL } from '../../Config/config';
 
 const ChangeMapCenter = ({ center }) => {
   const map = useMap();
@@ -34,12 +35,12 @@ const Map = () => {
       'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     'ESRI World':
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    'GeoServer WMS': 'http://localhost:9090/geoserver/wms',
+    'GeoServer WMS': `${BASE_URL}geoserver/wms`,
   };
 
   const fetchGeoJsonData = async (typeName) => {
     try {
-      const response = await fetch('http://localhost:9090/geoserver/wfs', {
+      const response = await fetch(`${BASE_URL}geoserver/wfs`, {
         method: 'POST',
         body: new URLSearchParams({
           service: 'WFS',
@@ -82,8 +83,8 @@ const Map = () => {
   };
 
   const legendUrl = currentStyle
-    ? `http://localhost:9090/geoserver/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&layer=cite:lotes&style=${currentStyle}&format=image/png`
-    : '/geoserver/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&layer=cite:lotes&format=image/png';
+    ? `${BASE_URL}geoserver/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&layer=cite:lotes&style=${currentStyle}&format=image/png`
+    : `${BASE_URL}geoserver/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&layer=cite:lotes&format=image/png`;
 
   return (
     <>

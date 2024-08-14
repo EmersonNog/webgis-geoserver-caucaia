@@ -18,7 +18,6 @@ export const register = async (req, res) => {
   }
 
   try {
-    // Check if the email or username already exists
     const existingUser = await pool.query(
       'SELECT * FROM usuarios WHERE email = $1 OR username = $2',
       [email, username]
@@ -74,5 +73,15 @@ export const login = async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Erro ao efetuar login');
+  }
+};
+
+export const getData = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM dados');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Erro ao buscar dados');
   }
 };

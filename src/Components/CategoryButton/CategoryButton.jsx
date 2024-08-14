@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './CategoryButton.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { BASE_URL } from '../../Config/config';
 
 const CategoryButton = ({ onStyleChange }) => {
-  // Adiciona a prop onStyleChange
   const [showColumns, setShowColumns] = useState(false);
   const [columns, setColumns] = useState([]);
   const [selectedColumn, setSelectedColumn] = useState('identificado'); // Inicializa como 'identificado'
@@ -33,7 +33,7 @@ const CategoryButton = ({ onStyleChange }) => {
 
   const fetchColumns = async () => {
     try {
-      const response = await fetch('http://localhost:9090/geoserver/wfs', {
+      const response = await fetch(`${BASE_URL}geoserver/wfs`, {
         method: 'POST',
         body: new URLSearchParams({
           service: 'WFS',

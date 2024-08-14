@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 
-const NavBar = () => {
+const NavBar = ({ onRefresh }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,6 +12,10 @@ const NavBar = () => {
       localStorage.removeItem('token');
       navigate('/login', { replace: true });
     }
+  };
+
+  const handleRefresh = () => {
+    window.location.reload();
   };
 
   return (
@@ -20,10 +26,16 @@ const NavBar = () => {
           <a href="/map" className="navbar-link">
             Mapa
           </a>
+          <a href="/cadaster" className="navbar-link">
+            Cadastros
+          </a>
           <a href="/about" className="navbar-link">
             Sobre
           </a>
         </div>
+        <button onClick={handleRefresh} className="navbar-link refresh-button">
+          <FontAwesomeIcon icon={faSyncAlt} />
+        </button>
         <button onClick={handleLogout} className="navbar-link logout-button">
           Logout
         </button>
