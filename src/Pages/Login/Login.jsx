@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../assets/images/logo.png';
 import './Login.css';
+import api from '../../Config/Api';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ login: '', password: '' });
@@ -23,18 +24,14 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginData),
-      });
+      const response = await api.post('/login', loginData); // Use a instância do Axios
 
-      if (response.ok) {
-        const { token } = await response.json();
+      if (response.status === 200) {
+        const { token } = response.data;
         localStorage.setItem('token', token);
         navigate('/map');
       } else {
-        const errorData = await response.json();
+        const errorData = response.data;
         toast.error(`${errorData.error || 'Credenciais inválidas'}`);
       }
     } catch (error) {

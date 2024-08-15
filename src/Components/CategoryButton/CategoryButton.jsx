@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CategoryButton.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
-import { BASE_URL } from '../../Config/config';
+import { BASE_URL } from '../../Config/GeoServer';
 
 const CategoryButton = ({ onStyleChange }) => {
   const [showColumns, setShowColumns] = useState(false);

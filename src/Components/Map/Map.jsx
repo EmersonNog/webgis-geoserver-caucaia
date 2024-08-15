@@ -6,7 +6,7 @@ import LayerGroupComponent from '../LayerGroupComponent/LayerGroupComponent';
 import Legend from '../Legend/Legend';
 import MiniMapControl from '../MiniMapControl/MiniMapControl';
 import 'leaflet/dist/leaflet.css';
-import { BASE_URL } from '../../Config/config';
+import { BASE_URL } from '../../Config/GeoServer';
 
 const ChangeMapCenter = ({ center }) => {
   const map = useMap();

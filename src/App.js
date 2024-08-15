@@ -1,6 +1,6 @@
-import React from 'react';
-import Rotas from './Services/Rotas.jsx';
-import 'leaflet/dist/leaflet.css';
+import React from "react";
+import Rotas from "./Services/Rotas.jsx";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   return <Rotas />;
