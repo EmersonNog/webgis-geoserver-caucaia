@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Table = ({
   getTableProps,
@@ -14,9 +14,9 @@ const Table = ({
         <tr {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column) => (
             <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-              {column.render('Header')}
+              {column.render("Header")}
               <span>
-                {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                {column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}
               </span>
             </th>
           ))}
@@ -29,11 +29,11 @@ const Table = ({
         return (
           <tr
             {...row.getRowProps()}
-            className={row.isSelected ? 'selected' : ''}
+            className={row.isSelected ? "selected" : ""}
             onClick={() => handleRowClick(row.id)}
           >
             {row.cells.map((cell) => (
-              <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
             ))}
           </tr>
         );

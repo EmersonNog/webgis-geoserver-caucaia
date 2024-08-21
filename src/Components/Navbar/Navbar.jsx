@@ -1,16 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
 
 const NavBar = ({ onRefresh }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm('Are you sure you want to logout?')) {
-      localStorage.removeItem('token');
-      navigate('/login', { replace: true });
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("token");
+      navigate("/login", { replace: true });
     }
   };
 
@@ -20,7 +20,9 @@ const NavBar = ({ onRefresh }) => {
 
   return (
     <div className="navbar">
-      <div className="navbar-brand">REURB Caucaia</div>
+      <a href="/map" className="navbar-brand">
+        REURB Caucaia
+      </a>
       <div className="navbar-links">
         <div className="navbar-link-container">
           <a href="/map" className="navbar-link">

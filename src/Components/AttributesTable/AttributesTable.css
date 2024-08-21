@@ -1,11 +1,11 @@
 .table-container {
   margin: 20px auto;
   padding: 20px;
-  max-width: 1000px;
+  max-width: 2000px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 .table-container h1 {
@@ -65,6 +65,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 th,
@@ -99,7 +100,7 @@ tr:hover td {
   background-color: #e6e6e6;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   transform: scale(1.2);
   cursor: pointer;
 }

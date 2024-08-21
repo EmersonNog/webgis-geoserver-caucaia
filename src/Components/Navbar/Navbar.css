@@ -7,12 +7,14 @@
   padding: 10px 20px;
   background-color: #333;
   color: white;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 .navbar-brand {
   font-size: 1.5em;
   font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
 .navbar-links {

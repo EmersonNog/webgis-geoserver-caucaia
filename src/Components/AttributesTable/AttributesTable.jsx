@@ -64,7 +64,6 @@ const DataTable = () => {
     prepareRow,
     selectedFlatRows,
     state: { selectedRowIds, pageIndex },
-    toggleRowSelected,
     setFilter,
     nextPage,
     previousPage,
@@ -72,7 +71,8 @@ const DataTable = () => {
     canPreviousPage,
     pageOptions,
     gotoPage,
-    setPageSize,
+    toggleAllRowsSelected,
+    toggleRowSelected,
   } = useTable(
     {
       columns,
@@ -103,12 +103,13 @@ const DataTable = () => {
     (hooks) => {
       hooks.visibleColumns.push((columns) => [
         {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <input type="checkbox" {...getToggleAllRowsSelectedProps()} />
-          ),
           Cell: ({ row }) => (
-            <input type="checkbox" {...row.getToggleRowSelectedProps()} />
+            <input
+              type="checkbox"
+              {...row.getToggleRowSelectedProps()}
+              onChange={() => handleRowClick(row.id)}
+              checked={row.isSelected}
+            />
           ),
         },
         ...columns,
@@ -139,9 +140,10 @@ const DataTable = () => {
     setFilter,
   ]);
 
-  const handleRowClick = (rowId) => {
-    toggleRowSelected(rowId);
-  };
+  const handleRowClick = React.useCallback((rowId) => {
+    toggleAllRowsSelected(false);
+    toggleRowSelected(rowId, true);
+  });
 
   return (
     <div className="table-container">
