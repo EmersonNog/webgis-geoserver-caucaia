@@ -1,11 +1,12 @@
 .register-container {
   display: flex;
   height: 100vh;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
+  background: #f0f0f0;
 }
 
 .register-image {
-  flex: 1;
+  flex: 0.6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,67 +24,62 @@
   flex-direction: column;
   justify-content: center;
   padding: 40px;
-  background-color: #f9f9f9;
-  overflow-x: hidden;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd;
+  overflow-y: hidden;
   transition: transform 0.3s ease;
 }
 
 h2 {
   margin-bottom: 20px;
   color: #333333;
+  font-size: 54px;
+  font-weight: 600;
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 500;
   color: #333333;
 }
 
 .input-group input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
 }
 
 .register-options {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-.next-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: white;
-  background-color: #006940;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.next-button:hover {
-  background-color: #004f2e;
-}
-
 button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 12px 24px;
+  font-size: 18px;
   color: white;
   background-color: #006940;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 button:hover {
   background-color: #004f2e;
+  transform: scale(1.02);
 }
 
 p {
@@ -92,8 +88,9 @@ p {
 }
 
 p a {
-  color: #d92525;
+  color: #006940;
   text-decoration: none;
+  font-weight: bold;
 }
 
 p a:hover {
@@ -107,32 +104,14 @@ p a:hover {
 }
 
 .step-indicator {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   background-color: #ccc;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 6px;
   transition: background-color 0.3s ease;
 }
 
 .step-indicator.active {
   background-color: #006940;
-}
-
-.password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  padding-right: 2.5rem; /* Ajuste conforme necessário */
-}
-
-.password-toggle {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
 }

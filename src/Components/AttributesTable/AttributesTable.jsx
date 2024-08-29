@@ -16,7 +16,7 @@ import "./AttributesTable.css";
 const DataTable = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-
+  const [pageSize, setPageSize] = useState(10);
   const [filterPesquisador, setFilterPesquisador] = useState("");
   const [filterLote, setFilterLote] = useState("");
   const [filterTitular, setFilterTitular] = useState("");
@@ -71,6 +71,7 @@ const DataTable = () => {
     canPreviousPage,
     pageOptions,
     gotoPage,
+    setPageSize: setTablePageSize,
     toggleAllRowsSelected,
     toggleRowSelected,
   } = useTable(
@@ -78,7 +79,7 @@ const DataTable = () => {
       columns,
       data,
       initialState: {
-        pageSize: 10,
+        pageSize: pageSize,
         filters: [
           {
             id: filterBy,
@@ -140,6 +141,10 @@ const DataTable = () => {
     setFilter,
   ]);
 
+  useEffect(() => {
+    setTablePageSize(pageSize);
+  }, [pageSize, setTablePageSize]);
+
   const handleRowClick = React.useCallback((rowId) => {
     toggleAllRowsSelected(false);
     toggleRowSelected(rowId, true);
@@ -148,20 +153,39 @@ const DataTable = () => {
   return (
     <div className="table-container">
       <h1>Dados da Tabela</h1>
-      <TableFilters
-        filterBy={filterBy}
-        setFilterBy={setFilterBy}
-        filterPesquisador={filterPesquisador}
-        setFilterPesquisador={setFilterPesquisador}
-        filterLote={filterLote}
-        setFilterLote={setFilterLote}
-        filterTitular={filterTitular}
-        setFilterTitular={setFilterTitular}
-        filterSituacao={filterSituacao}
-        setFilterSituacao={setFilterSituacao}
-        filterLogradouro={filterLogradouro}
-        setFilterLogradouro={setFilterLogradouro}
-      />
+
+      <div className="controls-container">
+        <TableFilters
+          filterBy={filterBy}
+          setFilterBy={setFilterBy}
+          filterPesquisador={filterPesquisador}
+          setFilterPesquisador={setFilterPesquisador}
+          filterLote={filterLote}
+          setFilterLote={setFilterLote}
+          filterTitular={filterTitular}
+          setFilterTitular={setFilterTitular}
+          filterSituacao={filterSituacao}
+          setFilterSituacao={setFilterSituacao}
+          filterLogradouro={filterLogradouro}
+          setFilterLogradouro={setFilterLogradouro}
+        />
+
+        <div className="page-size-selector">
+          <label htmlFor="pageSize">Linhas por página: </label>
+          <select
+            id="pageSize"
+            value={pageSize}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+        </div>
+      </div>
+
       {error ? (
         <p className="error-message">{error}</p>
       ) : (

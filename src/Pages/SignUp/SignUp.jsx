@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useSwipeable } from 'react-swipeable';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
-import './SignUp.css';
-import api from '../../Config/Api';
+import React, { useState } from "react";
+import { useSwipeable } from "react-swipeable";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
+import "./SignUp.css";
+import api from "../../Config/Api";
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const navigate = useNavigate();
@@ -29,50 +29,50 @@ const SignUp = () => {
     const { name, username, email, password, confirmPassword } = formData;
 
     if (!name || !username || !email || !password || !confirmPassword) {
-      toast.error('Por favor, preencha todos os campos.');
+      toast.error("Por favor, preencha todos os campos.");
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
-      toast.error('E-mail inválido.');
+      toast.error("E-mail inválido.");
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error('Senhas não coincidem.');
+      toast.error("Senhas não coincidem.");
       return;
     }
 
     if (password.length < 6) {
-      toast.error('A senha deve ter pelo menos 6 caracteres.');
+      toast.error("A senha deve ter pelo menos 6 caracteres.");
       return;
     }
 
     try {
-      const response = await api.post('/register', {
+      const response = await api.post("/register", {
         name,
         username,
         email,
         password,
       });
 
-      toast.success('Usuário cadastrado com sucesso!', {
+      toast.success("Usuário cadastrado com sucesso!", {
         autoClose: 2000,
       });
 
       setTimeout(() => {
-        navigate('/login');
+        navigate("/login");
       }, 2000);
     } catch (error) {
-      console.error('Erro:', error);
+      console.error("Erro:", error);
       const errorData = error.response?.data;
 
-      if (errorData?.error === 'email_exists') {
-        toast.error('E-mail já existe.');
-      } else if (errorData?.error === 'username_exists') {
-        toast.error('Usuário já existe.');
+      if (errorData?.error === "email_exists") {
+        toast.error("E-mail já existe.");
+      } else if (errorData?.error === "username_exists") {
+        toast.error("Usuário já existe.");
       } else {
-        toast.error('Erro ao cadastrar usuário');
+        toast.error("Erro ao cadastrar usuário");
       }
     }
   };
@@ -174,8 +174,8 @@ const SignUp = () => {
           )}
         </form>
         <div className="step-indicators">
-          <div className={`step-indicator ${step === 1 ? 'active' : ''}`}></div>
-          <div className={`step-indicator ${step === 2 ? 'active' : ''}`}></div>
+          <div className={`step-indicator ${step === 1 ? "active" : ""}`}></div>
+          <div className={`step-indicator ${step === 2 ? "active" : ""}`}></div>
         </div>
         <p>
           Já tem uma conta? <a href="/login">Login</a>

@@ -1,0 +1,57 @@
+/* GeoJsonModal.css */
+
+/* Estilo geral do modal */
+.geojson-modal .modal-content {
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+}
+
+/* Estilo do header do modal */
+.geojson-modal .modal-header {
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+.geojson-modal .modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Estilo do corpo do modal */
+.geojson-modal .modal-body {
+  padding: 20px;
+}
+
+.geojson-modal .dropzone {
+  border: 2px dashed #007bff; /* Bordas azuis para destacar a área de arrastar e soltar */
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #007bff; /* Texto azul para combinar com a borda */
+  background-color: #f0f8ff; /* Cor de fundo leve para a área de arrastar e soltar */
+  cursor: pointer; /* Cursor de mão para indicar que é clicável */
+}
+
+.geojson-modal .dropzone:hover {
+  background-color: #e0eaff; /* Cor de fundo quando o usuário passa o mouse sobre a área */
+}
+
+/* Estilo do footer do modal */
+.geojson-modal .modal-footer {
+  border-top: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Estilo dos botões no modal */
+.geojson-modal .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.geojson-modal .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

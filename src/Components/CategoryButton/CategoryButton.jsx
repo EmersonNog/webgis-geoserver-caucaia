@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import './CategoryButton.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMap } from '@fortawesome/free-solid-svg-icons';
-import { BASE_URL } from '../../Config/GeoServer';
+import React, { useState, useEffect } from "react";
+import "./CategoryButton.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap } from "@fortawesome/free-solid-svg-icons";
+import { BASE_URL } from "../../Config/GeoServer";
 
 const CategoryButton = ({ onStyleChange }) => {
   const [showColumns, setShowColumns] = useState(false);
   const [columns, setColumns] = useState([]);
-  const [selectedColumn, setSelectedColumn] = useState('identificado'); // Inicializa como 'identificado'
+  const [selectedColumn, setSelectedColumn] = useState("identificado"); // Inicializa como 'identificado'
 
   const columnLabels = {
-    identificado: 'Identificado',
-    possui_foto: 'Possui Foto',
-    cadastrado: 'Cadastrado',
-    situação: 'Situação',
-    cadastro_basico: 'Cadastro Básico',
-    ready_memorial: 'Memorial Pronto',
-    cadastro_social_completo: 'Cadastro Social Completo',
-    complete_social_ready_memorial: 'Completo e Pronto para Memorial',
+    identificado: "Identificado",
+    possui_foto: "Possui Foto",
+    cadastrado: "Cadastrado",
+    situação: "Situação",
+    cadastro_basico: "Cadastro Básico",
+    ready_memorial: "Memorial Pronto",
+    cadastro_social_completo: "Cadastro Social Completo",
+    complete_social_ready_memorial: "Completo e Pronto para Memorial",
   };
 
   const columnStyles = {
-    identificado: 'cite:identificados_estilos',
-    possui_foto: 'cite:fotos_estilos',
-    cadastrado: 'cite:cadastros_estilos',
-    situação: 'cite:situacao_estilos',
-    cadastro_basico: 'cite:cadastro_basico_estilos',
-    ready_memorial: 'cite:memorial_pronto',
-    cadastro_social_completo: 'cite:cadastro_social_completo',
-    complete_social_ready_memorial: 'cite:complete_social_ready_memorial',
+    identificado: "cite:identificados_estilos",
+    possui_foto: "cite:fotos_estilos",
+    cadastrado: "cite:cadastros_estilos",
+    situação: "cite:situacao_estilos",
+    cadastro_basico: "cite:cadastro_basico_estilos",
+    ready_memorial: "cite:memorial_pronto",
+    cadastro_social_completo: "cite:cadastro_social_completo",
+    complete_social_ready_memorial: "cite:complete_social_ready_memorial",
   };
 
   const fetchColumns = async () => {
     try {
       const response = await fetch(`${BASE_URL}geoserver/wfs`, {
-        method: 'POST',
+        method: "POST",
         body: new URLSearchParams({
-          service: 'WFS',
-          version: '1.0.0',
-          request: 'DescribeFeatureType',
-          typeName: 'cite:lotes',
-          outputFormat: 'application/json',
+          service: "WFS",
+          version: "1.0.0",
+          request: "DescribeFeatureType",
+          typeName: "cite:lotes",
+          outputFormat: "application/json",
         }),
       });
       const data = await response.json();
@@ -49,16 +49,16 @@ const CategoryButton = ({ onStyleChange }) => {
         .map((property) => property.name)
         .filter((name) => desiredColumns.includes(name));
       setColumns(columnNames);
-      onStyleChange(columnStyles['identificado'] || '');
+      onStyleChange(columnStyles["identificado"] || "");
     } catch (error) {
-      console.error('Erro ao buscar colunas:', error);
+      console.error("Erro ao buscar colunas:", error);
     }
   };
 
   const handleClick = (column) => {
     setSelectedColumn(column);
     setShowColumns(false);
-    onStyleChange(columnStyles[column] || '');
+    onStyleChange(columnStyles[column] || "");
   };
 
   const handleToggle = () => {
@@ -69,7 +69,7 @@ const CategoryButton = ({ onStyleChange }) => {
   };
 
   useEffect(() => {
-    onStyleChange(columnStyles[selectedColumn] || '');
+    onStyleChange(columnStyles[selectedColumn] || "");
   }, [selectedColumn, onStyleChange]);
 
   return (
@@ -85,7 +85,7 @@ const CategoryButton = ({ onStyleChange }) => {
                 <li
                   key={index}
                   onClick={() => handleClick(column)}
-                  className={selectedColumn === column ? 'selected' : ''}
+                  className={selectedColumn === column ? "selected" : ""}
                 >
                   {columnLabels[column]}
                 </li>

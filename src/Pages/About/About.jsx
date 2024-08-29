@@ -1,13 +1,13 @@
-import React from 'react';
-import './About.css';
-import NavBar from '../../Components/Navbar/Navbar';
-import logo from '../../assets/images/certare.jpg';
+import React from "react";
+import "./About.css";
+import NavBar from "../../Components/Navbar/Navbar";
+import logo from "../../assets/images/certare.jpg";
 
 function About() {
   return (
-    <main role="main">
+    <main role="main" className="background-about">
       <NavBar />
-      <div>
+      <div className="main">
         <div className="about-container">
           <h1 className="about-title">
             <img src={logo} alt="Certare logo" />

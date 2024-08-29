@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 
 const NavBar = ({ onRefresh }) => {
@@ -39,7 +40,7 @@ const NavBar = ({ onRefresh }) => {
           <FontAwesomeIcon icon={faSyncAlt} />
         </button>
         <button onClick={handleLogout} className="navbar-link logout-button">
-          Logout
+          <FontAwesomeIcon icon={faSignOut} />
         </button>
       </div>
     </div>
